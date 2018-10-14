@@ -1,0 +1,64 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "6fb6d4891df7391566c91a7bafc751373f07594c8dad8a8564ec377474143e40"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.5"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "pocketsphinx": {
+            "hashes": [
+                "sha256:1c2a8cc7f2032f9e8214f5e4e864511fe37bfd27f2045fbf8aed9c54569dc881",
+                "sha256:1f3eaca1b49d579e89e909bb101ad033493a1c9dddd8c72afd6b755c70365d56",
+                "sha256:34d290745c7dbe6fa2cac9815b5c19d10f393e528ecd70e779c21ebc448f9b63",
+                "sha256:3f438f9f5729a7629c122784697884cff5f2a2e022aef270a4081985d15eae88",
+                "sha256:41d2107b74597cf8444f9e36b91363d60097b4fa88a9c750760a85209deef439",
+                "sha256:667152b4139ba46de172fa627404fe284b2ecd5d6bfcfe905b068801324ba7fb",
+                "sha256:71e7cf04433615e21ad3c28a2cc2daa43e96e570f2611f142eb3468f4f7789a6",
+                "sha256:72286c3ecaa6641d426ca80bd4d1b3241c26b1703af419429ef779719e007443",
+                "sha256:855c6761d008cdb4fc2d9aded5c1a0f163ce901f8b64075d36a88ae7814af755",
+                "sha256:8ca14694d7cc111796e63c13c61420553a43a29c63c386c975bfc213d8da3e55",
+                "sha256:9b477fcf8829f53ab470fdcf3fa77db00d71eee321353d10b306f0e5b95e8591",
+                "sha256:bfbbeddb20196abbb04b8f7b5dc03628c7df0dc87e760326d76d37b27fb9d6f9",
+                "sha256:d20b497369bd108dd135b3d4eed1d3edd2c8b51b1b696e67600adbfff2fe3316",
+                "sha256:e2a4f22cddec68e75e796068ae82095dd8dba1187aa3a8abe305bdc6c565e8b4",
+                "sha256:f0fdfe162bc99590e8666251a55d6311ac4cb137482a871f93d38b1834251253"
+            ],
+            "index": "pypi",
+            "version": "==0.1.15"
+        },
+        "pyaudio": {
+            "hashes": [
+                "sha256:0d92f6a294565260a282f7c9a0b0d309fc8cc988b5ee5b50645634ab9e2da7f7",
+                "sha256:259bb9c1363be895b4f9a97e320a6017dd06bc540728c1a04eb4a7b6fe75035b",
+                "sha256:2a19bdb8ec1445b4f3e4b7b109e0e4cec1fd1f1ce588592aeb6db0b58d4fb3b0",
+                "sha256:51b558d1b28c68437b53218279110db44f69f3f5dd3d81859f569a4a96962bdc",
+                "sha256:589bfad2c615dd4b5d3757e763019c42ab82f06fba5cae64ec02fd7f5ae407ed",
+                "sha256:8f89075b4844ea94dde0c951c2937581c989fabd4df09bfd3f075035f50955df",
+                "sha256:93bfde30e0b64e63a46f2fd77e85c41fd51182a4a3413d9edfaf9ffaa26efb74",
+                "sha256:cf1543ba50bd44ac0d0ab5c035bb9c3127eb76047ff12235149d9adf86f532b6",
+                "sha256:f78d543a98b730e64621ebf7f3e2868a79ade0a373882ef51c0293455ffa8e6e"
+            ],
+            "index": "pypi",
+            "version": "==0.2.11"
+        },
+        "speechrecognition": {
+            "hashes": [
+                "sha256:4d8f73a0c05ec70331c3bacaa89ecc06dfa8d9aba0899276664cda06ab597e8e"
+            ],
+            "index": "pypi",
+            "version": "==3.8.1"
+        }
+    },
+    "develop": {}
+}
