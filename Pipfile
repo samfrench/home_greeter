@@ -12,3 +12,4 @@ pocketsphinx = "*"
 pyaudio = "*"
 
 [dev-packages]
+pylint = "*"
