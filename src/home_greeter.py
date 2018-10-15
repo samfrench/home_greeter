@@ -1,4 +1,4 @@
-from home_greeter.greeter import Greeter
+from home_greeter.greeter.greeter import Greeter
 
 def main():
     greeter = Greeter()
