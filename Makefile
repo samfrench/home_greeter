@@ -3,7 +3,7 @@
 .PHONY: run install_dependencies setup
 
 run:
-	pipenv run python3 src/home_greeter.py
+	pipenv run python3 -m home_greeter
 
 install_dependencies:
 	sudo apt-get install flac swig libpulse-dev libasound2-dev \
