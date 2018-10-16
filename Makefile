@@ -5,6 +5,9 @@
 run:
 	pipenv run python3 -m home_greeter
 
+test:
+	pipenv run python3 -m unittest
+
 install_dependencies:
 	sudo apt-get install flac swig libpulse-dev libasound2-dev \
 	python-pyaudio python3-pyaudio libportaudio0 libportaudio2 \
