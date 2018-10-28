@@ -1,8 +1,10 @@
 from home_greeter.greeter.greeter import Greeter
+from home_greeter.tweeter import Tweeter
 
 class Controller():
-    def __init__(self, greeter = Greeter()):
+    def __init__(self, greeter=Greeter(), tweeter=Tweeter()):
         self.__greeter = greeter
+        self.__tweeter = tweeter
         self.__should_run = True
 
     def run(self):
@@ -24,7 +26,4 @@ class Controller():
 
         # if not available then take and tweet image
 
-        self.tweet_image()
-
-    def tweet_image(self):
-        raise NotImplementedError()
+        self.__tweeter.tweet_image()
