@@ -3,18 +3,21 @@ from home_greeter.greeter.greeter import Greeter
 from home_greeter.tweeter import Tweeter
 
 class Controller():
-    def __init__(self, detector=Detector(), greeter=Greeter(), tweeter=Tweeter(), should_run=True):
+    def __init__(self, detector=Detector(), greeter=Greeter(), tweeter=Tweeter()):
         self.__detector = detector
         self.__greeter = greeter
         self.__tweeter = tweeter
+        self.__should_run = True
+
+    def should_run(self, should_run = True):
         self.__should_run = should_run
 
     def run(self):
-        self.__detector.subscribe(self.process)
+        self.__detector.subscribe(self.__process)
         while self.__should_run:
             pass
 
-    def process(self):
+    def __process(self):
         self.__greeter.welcome()
 
         self.__name = self.__greeter.ask_for_name()

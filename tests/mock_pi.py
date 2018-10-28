@@ -1,7 +1,7 @@
-from mock import MagicMock, patch
+from mock import Mock, patch
 
 class MockPi():
-    MockRPi = MagicMock()
+    MockRPi = Mock()
     modules = {
         'RPi': MockRPi,
         'RPi.GPIO': MockRPi.GPIO,

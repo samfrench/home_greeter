@@ -1,5 +1,5 @@
 from unittest import TestCase
-from mock import patch, MagicMock
+from mock import patch
 from tests.mock_pi import MockPi
 import RPi.GPIO
 
