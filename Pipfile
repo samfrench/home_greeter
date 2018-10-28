@@ -13,3 +13,4 @@ pyaudio = "*"
 
 [dev-packages]
 pylint = "*"
+mock = "*"

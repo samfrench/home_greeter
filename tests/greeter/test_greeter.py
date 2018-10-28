@@ -1,7 +1,7 @@
 from unittest import TestCase
-from home_greeter.greeter.greeter import Greeter
+from home_greeter import Greeter
 
-class GreeterTest(TestCase):
+class TestGreeter(TestCase):
     def test_create(self):
         self.greeter = Greeter()
         self.assertIsInstance(self.greeter, Greeter)
