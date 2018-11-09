@@ -10,6 +10,7 @@ python_version = "3"
 speechrecognition = "*"
 pocketsphinx = "*"
 pyaudio = "*"
+tweepy = "*"
 
 [dev-packages]
 pylint = "*"
