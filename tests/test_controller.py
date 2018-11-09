@@ -1,7 +1,5 @@
 from unittest import TestCase
 from mock import Mock, call
-from tests.mock_pi import MockPi
-import RPi.GPIO
 from home_greeter import Controller
 
 class TestController(TestCase):
