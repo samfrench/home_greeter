@@ -5,6 +5,7 @@ class MockPi():
     modules = {
         'RPi': MockRPi,
         'RPi.GPIO': MockRPi.GPIO,
+        'picamera': MockRPi
     }
 
     patcher = patch.dict('sys.modules', modules)

@@ -14,20 +14,41 @@ class TestGreeter(TestCase):
 
     def test_welcome(self):
         self.greeter.welcome()
-        self.mock_speaker.assert_has_calls([call.speak('Hello. I am the smart home greeter.')])
+        self.mock_speaker.speak.assert_called_once_with('Hello. I am the smart home greeter.')
 
-    def test_ask_for_name(self):
-        self.greeter.ask_for_name()
-        self.mock_speaker.assert_has_calls([call.speak('What is your name?')])
-        self.mock_listener.assert_has_calls([call.listen()])
+    def test_ask_for_visitor_name(self):
+        self.greeter.ask_for_visitor_name()
+        self.mock_speaker.speak.assert_called_once_with('What is your name?')
+        self.mock_listener.listen.assert_called_once()
 
-    def test_ask_for_person(self):
-        self.greeter.ask_for_person()
-        self.mock_speaker.assert_has_calls([call.speak('Who are you here to see?')])
-        self.mock_listener.assert_has_calls([call.listen()])
+    def test_ask_for_occupier_name(self):
+        self.greeter.ask_for_occupier_name()
+        self.mock_speaker.speak.assert_called_once_with('Who are you here to see?')
+        self.mock_listener.listen.assert_called_once()
 
-    def test_update_while_finding_if_person_is_avaiable(self):
-        self.greeter.update_while_finding_if_person_is_avaiable('Bob', 'Alice')
-        self.mock_speaker.assert_has_calls([
-            call.speak('Thank you Bob. Verifying if Alice is available to come to the door.')
-        ])
+    def test_update_visitor_about_asking_for_occupier(self):
+        self.greeter.update_visitor_about_asking_for_occupier('Bob', 'Alice')
+        self.mock_speaker.speak.assert_called_once_with(
+            'Thank you Bob. Verifying if Alice is available to come to the door.'
+        )
+
+    def test_request_occupier_come_to_the_door(self):
+        self.greeter.request_occupier_come_to_the_door('Bob', 'Alice')
+        self.mock_speaker.speak.assert_called_once_with(
+            'Bob is outside requesting to visit Alice.'
+        )
+
+    def test_take_message_for_occupier(self):
+        self.greeter.take_message_for_occupier('Alice')
+        self.mock_speaker.speak.assert_called_once_with(
+            'Alice is unable to come to the door. Please leave a short message for them.'
+        )
+        self.mock_listener.listen.assert_called_once()
+
+    def test_take_photo(self):
+        self.greeter.take_photo()
+        self.mock_speaker.speak.assert_called_once_with('A photo is being taken.')
+
+    def test_thank_visitor(self):
+        self.greeter.thank_visitor()
+        self.mock_speaker.speak.assert_called_once_with('The message and photo will be passed on.')
