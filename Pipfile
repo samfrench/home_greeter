@@ -11,6 +11,7 @@ speechrecognition = "*"
 pocketsphinx = "*"
 pyaudio = "*"
 tweepy = "*"
+coverage = "*"
 
 [dev-packages]
 pylint = "*"

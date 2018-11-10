@@ -16,7 +16,10 @@ class TestTweeter(TestCase):
         image_path = '/path/to/image.jpg'
         text = 'tweet'
         self.tweeter.tweet_image(image_path)
-        self.mock_tweepy.assert_has_calls([call.update_with_media(image_path, text)])
+        self.mock_tweepy.assert_has_calls([
+            call.update_with_media(image_path, text),
+            call.update_status(status=text)
+        ])
 
     @patch.object(tweepy, 'OAuthHandler')
     @patch.object(tweepy, 'API')

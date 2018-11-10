@@ -1,16 +1,18 @@
 import speech_recognition as sr
 
 class Listener:
+    def __init__(self, service=None, recogniser=sr.Recognizer(), microphone=sr.Microphone()):
+        if service not in ['google', 'sphinx']:
+            raise NotImplementedError('No available speech to text recognition service chosen.')
 
-    def __init__(self, service):
-        self.service = service
-        self.recognizer = sr.Recognizer()
-        self.microphone = sr.Microphone()
+        self.__service = service
+        self.__recogniser = recogniser
+        self.__microphone = microphone
 
     def listen(self):
-        with self.microphone as source:
-            self.recognizer.adjust_for_ambient_noise(source)
-            audio = self.recognizer.listen(source)
+        with self.__microphone as source:
+            self.__recogniser.adjust_for_ambient_noise(source)
+            audio = self.__recogniser.listen(source)
 
         try:
             return self.transcribe(audio)
@@ -20,9 +22,7 @@ class Listener:
             raise ValueError('Could not translate speech')
 
     def transcribe(self, audio):
-        if self.service == 'google':
-            return self.recognizer.recognize_google(audio)
-        elif self.service == 'sphinx':
-            return self.recognizer.recognize_sphinx(audio)
-        else:
-            raise NotImplementedError('No available speech to text recognition service chosen.')
+        if self.__service == 'google':
+            return self.__recogniser.recognize_google(audio)
+        elif self.__service == 'sphinx':
+            return self.__recogniser.recognize_sphinx(audio)

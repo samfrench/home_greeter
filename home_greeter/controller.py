@@ -1,3 +1,4 @@
+from os import environ
 from home_greeter.detector import Detector
 from home_greeter.greeter.greeter import Greeter
 from home_greeter.tweeter import Tweeter
@@ -7,9 +8,9 @@ class Controller():
         self.__detector = detector
         self.__greeter = greeter
         self.__tweeter = tweeter
-        self.__should_run = True
+        self.__should_run = False if ('NOHALT' in environ and environ['NOHALT'].lower() in ['false']) else True
 
-    def should_run(self, should_run = True):
+    def should_run(self, should_run=True):
         self.__should_run = should_run
 
     def run(self):

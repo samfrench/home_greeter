@@ -1,5 +1,5 @@
 from unittest import TestCase
-from mock import Mock
+from mock import Mock, call
 from tests.mock_pi import MockPi
 import RPi.GPIO
 from home_greeter import Detector
@@ -12,3 +12,9 @@ class TestController(TestCase):
 
     def test_create(self):
         self.assertIsInstance(self.detector, Detector)
+
+    def test_subscribe(self):
+        callback = lambda x : x
+        self.detector.subscribe(callback)
+        self.mock_button.assert_has_calls([call.subscribe(callback)])
+        self.mock_sensor.assert_has_calls([call.subscribe(callback)])

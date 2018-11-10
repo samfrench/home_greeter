@@ -1,0 +1,5 @@
+[run]
+omit =
+    */.local/*
+    **/__init__.py
+    **/__main__.py
