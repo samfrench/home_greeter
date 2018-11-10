@@ -34,8 +34,7 @@ class TestListenerWithSphinx(TestCase):
     def test_transcribe(self):
         audio = lambda: None
         self.listener.transcribe(audio)
-
-        self.mock_recogniser.assert_has_calls([call.recognize_sphinx(audio)])
+        self.mock_recogniser.recognize_sphinx.assert_called_once_with(audio)
 
 class TestListenerWithGoogle(TestCase):
     def setUp(self):
@@ -77,8 +76,7 @@ class TestListenerWithGoogle(TestCase):
     def test_transcribe(self):
         audio = lambda: None
         self.listener.transcribe(audio)
-
-        self.mock_recogniser.assert_has_calls([call.recognize_google(audio)])
+        self.mock_recogniser.recognize_google.assert_called_once_with(audio)
 
 class TestListenerWithInvalidService(TestCase):
     def setUp(self):

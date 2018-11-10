@@ -16,5 +16,5 @@ class TestController(TestCase):
     def test_subscribe(self):
         callback = lambda x : x
         self.detector.subscribe(callback)
-        self.mock_button.assert_has_calls([call.subscribe(callback)])
-        self.mock_sensor.assert_has_calls([call.subscribe(callback)])
+        self.mock_button.subscribe.assert_called_once_with(callback)
+        self.mock_sensor.subscribe.assert_called_once_with(callback)
