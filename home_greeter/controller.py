@@ -1,6 +1,7 @@
 from os import environ
 import sys, select
-from home_greeter.detector import Detector
+from time import sleep
+from home_greeter.detector.detector import Detector
 from home_greeter.greeter.greeter import Greeter
 from home_greeter.camera import Camera
 from home_greeter.tweeter import Tweeter
@@ -19,9 +20,10 @@ class Controller():
     def run(self):
         self.__detector.subscribe(self.__process)
         while self.__should_run:
+            sleep(1)
             pass
 
-    def __process(self):
+    def __process(self, channel):
         self.__greeter.welcome()
 
         # @todo: Detect and handle delivery

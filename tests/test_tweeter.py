@@ -2,7 +2,7 @@ from unittest import TestCase
 from mock import Mock, call, patch
 from tests.mock_tweepy import MockTweepy
 import tweepy
-from home_greeter import Tweeter
+from home_greeter.tweeter import Tweeter
 
 class TestTweeter(TestCase):
     def setUp(self):
@@ -13,12 +13,12 @@ class TestTweeter(TestCase):
         self.assertIsInstance(self.tweeter, Tweeter)
 
     def test_tweet_image(self):
-        image_path = '/path/to/image.jpg'
-        text = 'tweet'
-        self.tweeter.tweet_image(image_path)
+        image = '/path/to/image.jpg'
+        message = 'tweet'
+        self.tweeter.tweet_message_with_image(message, image)
         self.mock_tweepy.assert_has_calls([
-            call.update_with_media(image_path, text),
-            call.update_status(status=text)
+            call.update_with_media(image, message),
+            call.update_status(status=message)
         ])
 
     @patch.object(tweepy, 'OAuthHandler')

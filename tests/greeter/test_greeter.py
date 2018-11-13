@@ -1,6 +1,7 @@
 from unittest import TestCase
 from mock import Mock, call
-from home_greeter import Greeter
+import gpio_helper
+from home_greeter.greeter import Greeter
 
 class TestGreeter(TestCase):
     def setUp(self):
@@ -52,3 +53,7 @@ class TestGreeter(TestCase):
     def test_thank_visitor(self):
         self.greeter.thank_visitor()
         self.mock_speaker.speak.assert_called_once_with('The message and photo will be passed on.')
+
+    @classmethod
+    def tearDownClass(self):
+        gpio_helper.close()

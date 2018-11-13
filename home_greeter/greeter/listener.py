@@ -11,7 +11,8 @@ class Listener:
 
     def listen(self):
         with self.__microphone as source:
-            self.__recogniser.adjust_for_ambient_noise(source)
+            # Only keeping below line to show what would be needed if outside
+            # self.__recogniser.adjust_for_ambient_noise(source)
             audio = self.__recogniser.listen(source)
 
         try:

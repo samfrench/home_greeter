@@ -18,7 +18,8 @@ class TestListenerWithSphinx(TestCase):
         # __enter__ is needed due to logic in listener class being inside a python 'with' block
         # when you use 'with', this calls a magic method of __enter__ passing result to 'as'
         self.mock_recogniser.assert_has_calls([
-            call.adjust_for_ambient_noise(self.mock_microphone.__enter__()),
+            # Need to add if adjusting the main listener for ambient noise
+            # call.adjust_for_ambient_noise(self.mock_microphone.__enter__()),
             call.listen(self.mock_microphone.__enter__())
         ])
 
@@ -51,7 +52,8 @@ class TestListenerWithGoogle(TestCase):
         # __enter__ is needed due to logic in listener class being inside a python 'with' block
         # when you use 'with', this calls a magic method of __enter__ passing result to 'as'
         self.mock_recogniser.assert_has_calls([
-            call.adjust_for_ambient_noise(self.mock_microphone.__enter__()),
+            # Need to add if adjusting the main listener for ambient noise
+            # call.adjust_for_ambient_noise(self.mock_microphone.__enter__()),
             call.listen(self.mock_microphone.__enter__())
         ])
 

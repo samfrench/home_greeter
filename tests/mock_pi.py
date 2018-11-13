@@ -3,9 +3,7 @@ from mock import Mock, patch
 class MockPi():
     MockRPi = Mock()
     modules = {
-        'RPi': MockRPi,
-        'RPi.GPIO': MockRPi.GPIO,
-        'picamera': MockRPi
+        'picamera': Mock()
     }
 
     patcher = patch.dict('sys.modules', modules)
