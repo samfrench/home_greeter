@@ -5,7 +5,7 @@ class Listener:
         if service not in ['google', 'sphinx']:
             raise NotImplementedError('No available speech to text recognition service chosen.')
 
-        self.__service = service
+        self.__service    = service
         self.__recogniser = recogniser
         self.__microphone = microphone
 
