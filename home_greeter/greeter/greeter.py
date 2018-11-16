@@ -44,3 +44,12 @@ class Greeter():
 
     def thank_visitor(self):
         self.__speaker.speak('The message and photo will be passed on.')
+
+    def ask_deliverer_to_wait(self):
+        self.__speaker.speak('Please wait. Checking if someone is available to come to the door.')
+
+    def request_someone_come_to_the_door(self):
+        self.__speaker.speak('Answer the door. There is a delivery.')
+
+    def ask_deliverer_to_leave_parcel(self):
+        self.__speaker.speak('There is no one available at the moment. Please leave the delivery next door.')

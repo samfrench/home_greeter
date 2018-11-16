@@ -74,7 +74,18 @@ class Controller():
         self.__greeter.thank_visitor(visitor_name, occupier_name)
 
     def __handle_delivery(self):
-        pass
+        self.__greeter.ask_deliverer_to_wait()
+
+        self.__greeter.request_someone_come_to_the_door()
+
+        # I thought about adding a sensor or to detect a door opening, but there is already a movement sensor
+        # for initialising the scenario
+        # For simplicity I wait a set time for the occupier to come to the door
+
+        if self.__occupier_at_door():
+            return
+
+        self.__greeter.ask_deliverer_to_leave_parcel()
 
     def __occupier_at_door(self):
         timeout = 30 if self.__should_run else 0

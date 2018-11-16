@@ -54,6 +54,22 @@ class TestGreeter(TestCase):
         self.greeter.thank_visitor()
         self.mock_speaker.speak.assert_called_once_with('The message and photo will be passed on.')
 
+    def test_ask_deliverer_to_wait(self):
+        self.greeter.ask_deliverer_to_wait()
+        self.mock_speaker.speak.assert_called_once_with(
+            'Please wait. Checking if someone is available to come to the door.'
+        )
+
+    def test_request_someone_come_to_the_door(self):
+        self.greeter.request_someone_come_to_the_door()
+        self.mock_speaker.speak.assert_called_once_with('Answer the door. There is a delivery.')
+
+    def test_ask_deliverer_to_leave_parcel(self):
+        self.greeter.ask_deliverer_to_leave_parcel()
+        self.mock_speaker.speak.assert_called_once_with(
+            'There is no one available at the moment. Please leave the delivery next door.'
+        )
+
     @classmethod
     def tearDownClass(self):
         gpio_helper.close()
