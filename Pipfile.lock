@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "80944d6da97bd54d526c78abab18432d1af2a152833f1bd12a66ea692364652c"
+            "sha256": "0ca82b50a30d15611f650ec80060ff60997ae2ad3e97c8653642e758fe9e6281"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -146,6 +146,14 @@
             ],
             "version": "==1.6.8"
         },
+        "python-dotenv": {
+            "hashes": [
+                "sha256:122290a38ece9fe4f162dc7c95cae3357b983505830a154d3c98ef7f6c6cea77",
+                "sha256:4a205787bc829233de2a823aa328e44fd9996fedb954989a21f1fc67c13d7a77"
+            ],
+            "index": "pypi",
+            "version": "==0.9.1"
+        },
         "requests": {
             "hashes": [
                 "sha256:65b3a120e4329e33c9889db89c80976c5272f56ea92d3e74da8a463992e3ff54",
@@ -162,7 +170,6 @@
         },
         "rpi": {
             "git": "https://github.com/nosix/raspberry-gpio-emulator/",
-            "markers": "os_name == 'darwin'",
             "ref": "beb3079b51d9e8858732c0bb9f74b0a0d6f9c8f3"
         },
         "six": {
