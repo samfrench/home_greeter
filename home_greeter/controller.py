@@ -1,24 +1,30 @@
-from os import environ
+import os
 import sys, select
 from time import sleep
 from home_greeter.detector.detector import Detector
 from home_greeter.greeter.greeter import Greeter
 from home_greeter.camera import Camera
+from home_greeter.imager.imager import Imager
 from home_greeter.tweeter import Tweeter
 
 class Controller():
-    def __init__(self, detector=Detector(), greeter=Greeter(), camera=Camera(), tweeter=Tweeter()):
-        self.__detector   = detector
-        self.__greeter    = greeter
-        self.__camera     = camera
-        self.__tweeter    = tweeter
-        self.__should_run = False if ('NOHALT' in environ and environ['NOHALT'].lower() in ['false']) else True
+    INITIAL_PHOTO = os.getenv('INITIAL_PHOTO')
+    VISITOR_PHOTO = os.getenv('VISITOR_PHOTO')
+
+    def __init__(self, detector=None, greeter=None, camera=None, imager=None, tweeter=None):
+        self.__detector   = detector or Detector()
+        self.__greeter    = greeter  or Greeter()
+        self.__camera     = camera   or Camera()
+        self.__imager     = imager   or Imager()
+        self.__tweeter    = tweeter  or Tweeter()
+        self.__should_run = False if ('NOHALT' in os.environ and os.environ['NOHALT'].lower() in ['false']) else True
 
     def should_run(self, should_run=True):
         self.__should_run = should_run
 
     def run(self):
         self.__detector.subscribe(self.__process)
+        self.__process(1)
         while self.__should_run:
             sleep(1)
             pass
@@ -26,12 +32,14 @@ class Controller():
     def __process(self, channel):
         self.__greeter.welcome()
 
-        # @todo: Detect and handle delivery
-        delivery = False
-        if (delivery):
+        if (self.__is_delivery()):
             self.__handle_delivery()
         else:
             self.__handle_visitor()
+
+    def __is_delivery(self):
+        photo = self.__camera.take_photo(self.INITIAL_PHOTO)
+        return self.__imager.is_delivery(photo)
 
     def __handle_visitor(self):
         visitor_name = self.__greeter.ask_for_visitor_name()
@@ -59,7 +67,7 @@ class Controller():
         message = self.__greeter.take_message_for_occupier(occupier_name)
 
         self.__greeter.take_photo()
-        photo = self.__camera.take_photo()
+        photo = self.__camera.take_photo(self.VISITOR_PHOTO)
 
         self.__tweeter.tweet_message_with_image(message, photo)
 

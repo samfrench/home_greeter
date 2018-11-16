@@ -1,16 +1,27 @@
 from unittest import TestCase
 from mock import Mock, call, patch
+
+# Mocking picamera module before camera import
+import sys
+sys.modules['picamera'] = Mock()
+
 from home_greeter.controller import Controller
 
 class TestControllerWithVisitorAndOccupierIn(TestCase):
     def setUp(self):
-        self.mock_detector = Mock(autospec='home_greeter.Detector')
-        self.mock_greeter = Mock(autospec='home_greeter.Greeter')
+        self.mock_detector = Mock(autospec='home_greeter.detector.Detector')
+        self.mock_greeter = Mock(autospec='home_greeter.greeter.Greeter')
         self.mock_camera  = Mock(autospec='home_greeter.Camera')
+        self.mock_imager  = Mock(autospec='home_greeter.imager.Imager')
         self.mock_tweeter = Mock(autospec='home_greeter.Tweeter')
         self.controller = Controller(
-            detector=self.mock_detector, greeter=self.mock_greeter, camera=self.mock_camera, tweeter=self.mock_tweeter
+            detector = self.mock_detector,
+            greeter  = self.mock_greeter,
+            camera   = self.mock_camera,
+            imager   = self.mock_imager,
+            tweeter  = self.mock_tweeter
         )
+        self.mock_imager.is_delivery.return_value = False # Mock out the visitor
         self.channel = 1 # This can be anything, but a channel number is provided when an event is detected
         self.controller.should_run(False)
 
@@ -24,6 +35,10 @@ class TestControllerWithVisitorAndOccupierIn(TestCase):
     def test_greeter_welcome_is_called(self):
         self.controller._Controller__process(self.channel)
         self.mock_greeter.welcome.assert_called_once()
+
+    def test_camera_take_photo_for_detection_is_called(self):
+        self.controller._Controller__process(self.channel)
+        self.mock_camera.take_photo.assert_has_calls([call(Controller.INITIAL_PHOTO)])
 
     def test_greeter_ask_for_visitor_name_is_called(self):
         self.controller._Controller__process(self.channel)
@@ -50,7 +65,7 @@ class TestControllerWithVisitorAndOccupierIn(TestCase):
         self.controller._Controller__process(self.channel)
         self.mock_greeter.take_message_for_occupier.assert_not_called()
         self.mock_greeter.take_photo.assert_not_called()
-        self.mock_camera.take_photo.assert_not_called()
+        self.mock_camera.take_photo.assert_called_once_with(Controller.INITIAL_PHOTO)
         self.mock_tweeter.tweet_message_with_image.assert_not_called()
         self.mock_greeter.thank_visitor.assert_not_called()
 
@@ -59,10 +74,16 @@ class TestControllerWithVisitorAndOccupierOut(TestCase):
         self.mock_detector = Mock(autospec='home_greeter.Detector')
         self.mock_greeter = Mock(autospec='home_greeter.Greeter')
         self.mock_camera  = Mock(autospec='home_greeter.Camera')
+        self.mock_imager  = Mock(autospec='home_greeter.imager.Imager')
         self.mock_tweeter = Mock(autospec='home_greeter.Tweeter')
         self.controller = Controller(
-            detector=self.mock_detector, greeter=self.mock_greeter, camera=self.mock_camera, tweeter=self.mock_tweeter
+            detector = self.mock_detector,
+            greeter  = self.mock_greeter,
+            camera   = self.mock_camera,
+            imager   = self.mock_imager,
+            tweeter  = self.mock_tweeter
         )
+        self.mock_imager.is_delivery.return_value = False # Mock out the visitor
         self.channel = 1 # This can be anything, but a channel number is provided when an event is detected
         self.controller.should_run(False)
 
@@ -76,6 +97,10 @@ class TestControllerWithVisitorAndOccupierOut(TestCase):
     def test_greeter_welcome_is_called(self):
         self.controller._Controller__process(self.channel)
         self.mock_greeter.welcome.assert_called_once()
+
+    def test_camera_take_photo_for_detection_is_called(self):
+        self.controller._Controller__process(self.channel)
+        self.mock_camera.take_photo.assert_has_calls([call(Controller.INITIAL_PHOTO)])
 
     def test_greeter_ask_for_visitor_name_is_called(self):
         self.controller._Controller__process(self.channel)
@@ -103,9 +128,9 @@ class TestControllerWithVisitorAndOccupierOut(TestCase):
         self.controller._Controller__process(self.channel)
         self.mock_greeter.take_photo.assert_called_once()
 
-    def test_camera_take_photo_is_called(self):
+    def test_camera_take_photo_of_visitor_is_called(self):
         self.controller._Controller__process(self.channel)
-        self.mock_camera.take_photo.assert_called_once()
+        self.mock_camera.take_photo.assert_has_calls([call(Controller.VISITOR_PHOTO)])
 
     def test_tweeter_tweet_message_with_image_is_called(self):
         with patch.object(self.mock_greeter, 'take_message_for_occupier', return_value='I am outside'):
