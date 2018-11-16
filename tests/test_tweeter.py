@@ -1,7 +1,6 @@
 from unittest import TestCase
 from mock import Mock, call, patch
-from tests.mock_tweepy import MockTweepy
-import tweepy
+import os
 from home_greeter.tweeter import Tweeter
 
 class TestTweeter(TestCase):
@@ -21,13 +20,13 @@ class TestTweeter(TestCase):
             call.update_status(status=message)
         ])
 
-    @patch.object(tweepy, 'OAuthHandler')
-    @patch.object(tweepy, 'API')
+    @patch('tweepy.OAuthHandler')
+    @patch('tweepy.API')
     def test_twitter_auth(self, api, auth):
         tweeter = Tweeter()
         auth.assert_has_calls([
-            call('ck', 'cs'),
-            call().set_access_token('at', 'ast')
+            call(os.getenv('TWITTER_CONSUMER_KEY'), os.getenv('TWITTER_CONSUMER_SECRET')),
+            call().set_access_token(os.getenv('TWITTER_ACCESS_TOKEN'), os.getenv('TWITTER_ACCESS_TOKEN_SECRET'))
         ])
 
         api.assert_called()

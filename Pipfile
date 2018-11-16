@@ -10,7 +10,7 @@ python_version = "3"
 speechrecognition = "*"
 pocketsphinx = "*"
 pyaudio = "*"
-tweepy = "*"
+tweepy = { git = "https://github.com/tweepy/tweepy" }
 coverage = "*"
 picamera = { version = "*", os_name = "== 'pi'" }
 mock = "*"
