@@ -16,6 +16,7 @@ picamera = { version = "*", os_name = "== 'pi'" }
 mock = "*"
 rpi = { git = "https://github.com/nosix/raspberry-gpio-emulator/", os_name = '!= pi' }
 python-dotenv = "*"
+clarifai = "*"
 
 [dev-packages]
 pylint = "*"
