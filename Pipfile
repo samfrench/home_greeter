@@ -12,11 +12,10 @@ pocketsphinx = "*"
 pyaudio = "*"
 tweepy = { git = "https://github.com/tweepy/tweepy" }
 coverage = "*"
-picamera = { version = "*", os_name = "== 'pi'" }
-mock = "*"
-rpi = { git = "https://github.com/nosix/raspberry-gpio-emulator/", os_name = '!= pi' }
+picamera = { version = "*" , platform_machine = "== 'arm'" }
 python-dotenv = "*"
 clarifai = "*"
+rpi-gpio-development-mock = { git = "https://github.com/willbuckner/rpi-gpio-development-mock", sys_platform = "!= 'arm'" }
 
 [dev-packages]
 pylint = "*"
