@@ -1,0 +1,15 @@
+language: python
+
+python:
+  - "3.6-dev"
+
+before_install:
+  - make ci_pre_install_system_dependencies
+  - make install_system_dependencies
+  - make ci_pipenv
+
+install:
+  - make install_application_dependencies
+
+script:
+  - make test

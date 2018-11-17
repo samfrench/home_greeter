@@ -1,13 +1,9 @@
 from unittest import TestCase
 from mock import patch
 import RPi.GPIO as GPIO
-import gpio_helper
 from home_greeter.detector.button import Button
 
 class TestButton(TestCase):
-    def setUp(self):
-        gpio_helper.reset_pins()
-
     def test_create(self):
         button = Button()
         self.assertIsInstance(button, Button)
@@ -30,7 +26,3 @@ class TestButton(TestCase):
         mock_gpio_add_event_detect.assert_called_once_with(
             button.INPUT_PIN, GPIO.RISING, callback=callback, bouncetime=200
         )
-
-    @classmethod
-    def tearDownClass(self):
-        gpio_helper.close()

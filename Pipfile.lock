@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2cd642b2f942062cd615818bedd7f8e9d5446d5f2cf863f1d9577c6f5dfeed52"
+            "sha256": "6197c7fddaf2c9f44d5b7eb930ffe797a990f36a89f0725f5a204f4542bbc8de"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -18,10 +18,10 @@
     "default": {
         "certifi": {
             "hashes": [
-                "sha256:339dc09518b07e2fa7eda5450740925974815557727d6bd35d319c1524a04a4c",
-                "sha256:6d58c986d22b038c8c0df30d639f23a3e6d172a05c3583e766f4c0b785c0986a"
+                "sha256:47f9c83ef4c0c621eaef743f133f09fa8a74a9b75f037e8624f83bd1b6626cb7",
+                "sha256:993f830721089fef441cdfeb4b2c8c9df86f0c63239f06bd025a76a7daddb033"
             ],
-            "version": "==2018.10.15"
+            "version": "==2018.11.29"
         },
         "chardet": {
             "hashes": [
@@ -32,11 +32,11 @@
         },
         "clarifai": {
             "hashes": [
-                "sha256:96f89a2a317f9397b3922171a876682197b8487ab4b229b0c6ec9815a99b5eb9",
-                "sha256:a7fa9f7bc867df45dc8e3a0c2680f2f90f9b5cf7ee09e3cbed297ed4db6bee06"
+                "sha256:44b2fe58152eca091edf7df83c6e4230833e5a1af6294411a310b9524c1e795b",
+                "sha256:ebe48ab12757c72b682ec1157154a67c64525be09302f55a5997ccd3a848e823"
             ],
             "index": "pypi",
-            "version": "==2.4.1"
+            "version": "==2.4.2"
         },
         "configparser": {
             "hashes": [
@@ -153,27 +153,12 @@
             ],
             "version": "==2.6.0"
         },
-        "mock": {
-            "hashes": [
-                "sha256:5ce3c71c5545b472da17b72268978914d0252980348636840bd34a00b5cc96c1",
-                "sha256:b158b6df76edd239b8208d481dc46b6afd45a846b7812ff0ce58971cf5bc8bba"
-            ],
-            "index": "pypi",
-            "version": "==2.0.0"
-        },
-        "pbr": {
-            "hashes": [
-                "sha256:f59d71442f9ece3dffc17bc36575768e1ee9967756e6b6535f0ee1f0054c3d68",
-                "sha256:f6d5b23f226a2ba58e14e49aa3b1bfaf814d0199144b95d78458212444de1387"
-            ],
-            "version": "==5.1.1"
-        },
         "picamera": {
             "hashes": [
                 "sha256:890815aa01e4d855a6a95dd3ad0953b872a6b954982106407df0c5a31a163e50"
             ],
             "index": "pypi",
-            "markers": "os_name == 'pi'",
+            "markers": "platform_machine == 'arm'",
             "version": "==1.13"
         },
         "pocketsphinx": {
@@ -248,9 +233,10 @@
             ],
             "version": "==2.20.1"
         },
-        "rpi": {
-            "git": "https://github.com/nosix/raspberry-gpio-emulator/",
-            "ref": "beb3079b51d9e8858732c0bb9f74b0a0d6f9c8f3"
+        "rpi-gpio-development-mock": {
+            "git": "https://github.com/willbuckner/rpi-gpio-development-mock",
+            "markers": "sys_platform != 'arm'",
+            "ref": "b6ae0adf8d050177109a92d25e0c69afe1a4ff25"
         },
         "six": {
             "hashes": [
@@ -268,7 +254,7 @@
         },
         "tweepy": {
             "git": "https://github.com/tweepy/tweepy",
-            "ref": "2efe385fc69385b57733f747ee62e6be12a1338b"
+            "ref": "3df387deb4af34ef92c13a48cf19be957f4e2464"
         },
         "urllib3": {
             "hashes": [
@@ -281,10 +267,10 @@
     "develop": {
         "astroid": {
             "hashes": [
-                "sha256:292fa429e69d60e4161e7612cb7cc8fa3609e2e309f80c224d93a76d5e7b58be",
-                "sha256:c7013d119ec95eb626f7a2011f0b63d0c9a095df9ad06d8507b37084eada1a8d"
+                "sha256:35b032003d6a863f5dcd7ec11abd5cd5893428beaa31ab164982403bcb311f22",
+                "sha256:6a5d668d7dc69110de01cdf7aeec69a679ef486862a0850cc0fd5571505b6b7e"
             ],
-            "version": "==2.0.4"
+            "version": "==2.1.0"
         },
         "isort": {
             "hashes": [
@@ -352,11 +338,11 @@
         },
         "pylint": {
             "hashes": [
-                "sha256:1d6d3622c94b4887115fe5204982eee66fdd8a951cf98635ee5caee6ec98c3ec",
-                "sha256:31142f764d2a7cd41df5196f9933b12b7ee55e73ef12204b648ad7e556c119fb"
+                "sha256:689de29ae747642ab230c6d37be2b969bf75663176658851f456619aacf27492",
+                "sha256:771467c434d0d9f081741fec1d64dfb011ed26e65e12a28fe06ca2f61c4d556c"
             ],
             "index": "pypi",
-            "version": "==2.1.1"
+            "version": "==2.2.2"
         },
         "six": {
             "hashes": [

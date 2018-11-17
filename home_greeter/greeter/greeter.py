@@ -1,5 +1,5 @@
-from .listener import Listener
-from .speaker import Speaker
+from home_greeter.greeter.listener import Listener
+from home_greeter.greeter.speaker import Speaker
 
 class Greeter():
     def __init__(self, listener=None, speaker=None):

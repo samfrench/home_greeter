@@ -1,13 +1,13 @@
 import speech_recognition as sr
 
 class Listener:
-    def __init__(self, service=None, recogniser=sr.Recognizer(), microphone=sr.Microphone()):
+    def __init__(self, service=None, recogniser=None, microphone=None):
         if service not in ['google', 'sphinx']:
             raise NotImplementedError('No available speech to text recognition service chosen.')
 
         self.__service    = service
-        self.__recogniser = recogniser
-        self.__microphone = microphone
+        self.__recogniser = recogniser or sr.Recognizer()
+        self.__microphone = microphone or sr.Microphone()
 
     def listen(self):
         with self.__microphone as source:
