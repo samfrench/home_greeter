@@ -42,8 +42,11 @@ class Greeter():
     def take_photo(self):
         self.__speaker.speak('A photo is being taken.')
 
-    def thank_visitor(self):
-        self.__speaker.speak('The message and photo will be passed on.')
+    def thank_visitor(self, visitor_name, occupier_name):
+        self.__speaker.speak(
+            "Thank you {visitor_name}. The message and photo will be passed on to {occupier_name}."
+            .format(visitor_name=visitor_name, occupier_name=occupier_name)
+        )
 
     def ask_deliverer_to_wait(self):
         self.__speaker.speak('Please wait. Checking if someone is available to come to the door.')

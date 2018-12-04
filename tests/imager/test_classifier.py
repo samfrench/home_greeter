@@ -1,5 +1,5 @@
 from unittest import TestCase
-from mock import Mock, call, patch
+from mock import Mock, call, patch, mock_open
 from home_greeter.imager.classifier import Classifier
 
 class TestClassifier(TestCase):
@@ -39,10 +39,10 @@ class TestClassifier(TestCase):
         self.mock_clarifai.configure_mock(models=models_mock)
         self.classifier = Classifier(api=self.mock_clarifai)
 
-        with open(__file__, 'rb') as photo:
-            classifications = self.classifier.classify_image(photo)
+        with patch('builtins.open', mock_open(read_data=None)) as m:
+            classifications = self.classifier.classify_image('/path/to/file')
 
-            mock_image.assert_called_once_with(file_obj=photo)
+            mock_image.assert_called_once_with(file_obj=m())
 
         self.mock_clarifai.assert_has_calls([
             call.models.get(Classifier.MODEL),

@@ -10,12 +10,13 @@ python_version = "3"
 speechrecognition = "*"
 pocketsphinx = "*"
 pyaudio = "*"
-tweepy = { git = "https://github.com/tweepy/tweepy" }
+tweepy = {git = "https://github.com/tweepy/tweepy"}
 coverage = "*"
-picamera = { version = "*" , platform_machine = "== 'arm'" }
+picamera = {version = "*",platform_machine = "== 'arm'"}
 python-dotenv = "*"
 clarifai = "*"
-rpi-gpio-development-mock = { git = "https://github.com/willbuckner/rpi-gpio-development-mock", sys_platform = "!= 'arm'" }
+rpi-gpio-development-mock = {git = "https://github.com/willbuckner/rpi-gpio-development-mock",platform_machine = "!= 'arm'"}
+"RPi.GPIO" = {version = "*",platform_machine = "== 'arm'"}
 
 [dev-packages]
 pylint = "*"

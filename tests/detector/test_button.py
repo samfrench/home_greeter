@@ -24,5 +24,5 @@ class TestButton(TestCase):
         button = Button()
         button.subscribe(callback)
         mock_gpio_add_event_detect.assert_called_once_with(
-            button.INPUT_PIN, GPIO.RISING, callback=callback, bouncetime=200
+            button.INPUT_PIN, GPIO.RISING, callback=callback, bouncetime=5000
         )

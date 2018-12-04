@@ -49,8 +49,10 @@ class TestGreeter(TestCase):
         self.mock_speaker.speak.assert_called_once_with('A photo is being taken.')
 
     def test_thank_visitor(self):
-        self.greeter.thank_visitor()
-        self.mock_speaker.speak.assert_called_once_with('The message and photo will be passed on.')
+        self.greeter.thank_visitor('Bob', 'Alice')
+        self.mock_speaker.speak.assert_called_once_with(
+            'Thank you Bob. The message and photo will be passed on to Alice.'
+        )
 
     def test_ask_deliverer_to_wait(self):
         self.greeter.ask_deliverer_to_wait()

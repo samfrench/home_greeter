@@ -8,4 +8,4 @@ class Sensor():
         GPIO.setup(self.INPUT_PIN, GPIO.IN)
 
     def subscribe(self, callback):
-        GPIO.add_event_detect(self.INPUT_PIN, GPIO.RISING, callback=callback, bouncetime=200)
+        GPIO.add_event_detect(self.INPUT_PIN, GPIO.RISING, callback=callback, bouncetime=5000)

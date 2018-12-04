@@ -134,9 +134,8 @@ class TestControllerWithVisitorAndOccupierOut(TestCase):
 
     def test_tweeter_tweet_message_with_image_is_called(self):
         with patch.object(self.mock_greeter, 'take_message_for_occupier', return_value='I am outside'):
-            with patch.object(self.mock_camera, 'take_photo', return_value='/path/to/image.jpg'):
-                self.controller._Controller__process(self.channel)
-                self.mock_tweeter.tweet_message_with_image.assert_called_once_with('I am outside', '/path/to/image.jpg')
+            self.controller._Controller__process(self.channel)
+            self.mock_tweeter.tweet_message_with_image.assert_called_once_with('I am outside', Controller.VISITOR_PHOTO)
 
     def test_greeter_thank_visitor_is_called(self):
         self.controller._Controller__process(self.channel)

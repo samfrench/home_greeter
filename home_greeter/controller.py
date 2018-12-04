@@ -12,24 +12,29 @@ class Controller():
     VISITOR_PHOTO = os.getenv('VISITOR_PHOTO')
 
     def __init__(self, detector=None, greeter=None, camera=None, imager=None, tweeter=None):
-        self.__detector   = detector or Detector()
-        self.__greeter    = greeter  or Greeter()
-        self.__camera     = camera   or Camera()
-        self.__imager     = imager   or Imager()
-        self.__tweeter    = tweeter  or Tweeter()
-        self.__should_run = False if ('NOHALT' in os.environ and os.environ['NOHALT'].lower() in ['false']) else True
+        self.__detector    = detector or Detector()
+        self.__greeter     = greeter  or Greeter()
+        self.__camera      = camera   or Camera()
+        self.__imager      = imager   or Imager()
+        self.__tweeter     = tweeter  or Tweeter()
+        self.__should_run  = False if ('NOHALT' in os.environ and os.environ['NOHALT'].lower() in ['false']) else True
+        self.__has_visitor = False
 
     def should_run(self, should_run=True):
         self.__should_run = should_run
 
     def run(self):
         self.__detector.subscribe(self.__process)
-        self.__process(1)
         while self.__should_run:
             sleep(1)
             pass
 
     def __process(self, channel):
+        if self.__has_visitor:
+            return
+
+        self.__has_visitor = True
+
         self.__greeter.welcome()
 
         if (self.__is_delivery()):
@@ -37,9 +42,11 @@ class Controller():
         else:
             self.__handle_visitor()
 
+        self.__has_visitor = False
+
     def __is_delivery(self):
-        photo = self.__camera.take_photo(self.INITIAL_PHOTO)
-        return self.__imager.is_delivery(photo)
+        self.__camera.take_photo(self.INITIAL_PHOTO)
+        return self.__imager.is_delivery(self.INITIAL_PHOTO)
 
     def __handle_visitor(self):
         visitor_name = self.__greeter.ask_for_visitor_name()
@@ -67,9 +74,9 @@ class Controller():
         message = self.__greeter.take_message_for_occupier(occupier_name)
 
         self.__greeter.take_photo()
-        photo = self.__camera.take_photo(self.VISITOR_PHOTO)
+        self.__camera.take_photo(self.VISITOR_PHOTO)
 
-        self.__tweeter.tweet_message_with_image(message, photo)
+        self.__tweeter.tweet_message_with_image(message, self.VISITOR_PHOTO)
 
         self.__greeter.thank_visitor(visitor_name, occupier_name)
 

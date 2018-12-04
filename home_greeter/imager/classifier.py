@@ -9,7 +9,7 @@ class Classifier():
 
     def classify_image(self, photo):
         model           = self.__get_model()
-        image           = cr.Image(file_obj=photo)
+        image           = cr.Image(file_obj=open(photo, 'rb'))
         classifications = model.predict([image])
         return self.__transform(classifications['outputs'][0]['data']['concepts'])
 

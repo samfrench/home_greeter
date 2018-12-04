@@ -25,5 +25,5 @@ class TestSensor(TestCase):
         sensor = Sensor()
         sensor.subscribe(callback)
         mock_gpio_add_event_detect.assert_called_once_with(
-            sensor.INPUT_PIN, GPIO.RISING, callback=callback, bouncetime=200
+            sensor.INPUT_PIN, GPIO.RISING, callback=callback, bouncetime=5000
         )

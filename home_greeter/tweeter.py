@@ -6,8 +6,7 @@ class Tweeter():
         self.__api = api or self.__api()
 
     def tweet_message_with_image(self, message, image):
-        status = self.__api.update_with_media(image, message)
-        self.__api.update_status(status = message)
+        self.__api.update_with_media(image, message)
 
     def __api(self):
         consumer_key = os.getenv('TWITTER_CONSUMER_KEY')
@@ -16,4 +15,4 @@ class Tweeter():
         access_token_secret = os.getenv('TWITTER_ACCESS_TOKEN_SECRET')
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
         auth.set_access_token(access_token, access_token_secret)
-        api = tweepy.API(auth)
+        return tweepy.API(auth)

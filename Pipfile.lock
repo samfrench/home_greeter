@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6197c7fddaf2c9f44d5b7eb930ffe797a990f36a89f0725f5a204f4542bbc8de"
+            "sha256": "2887957e99590e1475e68eca049dc7c5442cb7043339f0dc3419b20e439696f9"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -235,8 +235,16 @@
         },
         "rpi-gpio-development-mock": {
             "git": "https://github.com/willbuckner/rpi-gpio-development-mock",
-            "markers": "sys_platform != 'arm'",
+            "markers": "platform_machine != 'arm'",
             "ref": "b6ae0adf8d050177109a92d25e0c69afe1a4ff25"
+        },
+        "rpi.gpio": {
+            "hashes": [
+                "sha256:a4210ad63bfe844e43995286de0d3950dfacfa0f3799bb9392770ac54a7d2e47"
+            ],
+            "index": "pypi",
+            "markers": "platform_machine == 'arm'",
+            "version": "==0.6.5"
         },
         "six": {
             "hashes": [
