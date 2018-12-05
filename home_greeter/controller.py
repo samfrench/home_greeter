@@ -1,6 +1,7 @@
 import os
 import sys, select
 from time import sleep
+import RPi.GPIO as GPIO
 from home_greeter.detector.detector import Detector
 from home_greeter.greeter.greeter import Greeter
 from home_greeter.camera import Camera
@@ -24,10 +25,15 @@ class Controller():
         self.__should_run = should_run
 
     def run(self):
-        self.__detector.subscribe(self.__process)
-        while self.__should_run:
-            sleep(1)
+        try:
+            self.__detector.subscribe(self.__process)
+            while self.__should_run:
+                sleep(1)
+                pass
+        except KeyboardInterrupt:
             pass
+        finally:
+            GPIO.cleanup()
 
     def __process(self, channel):
         if self.__has_visitor:
